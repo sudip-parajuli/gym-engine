@@ -14,11 +14,12 @@ import {
   Utensils,
 } from "lucide-react";
 import { FOODS, optionalNumber } from "@/lib/fitness";
+import PersonalProgress from "./personal-progress";
 import { useJournal } from "@/lib/use-journal";
 import { today, validDate } from "@/lib/domain";
 const foodName = (id: string) => FOODS.find((f) => f.id === id)?.name || id;
 export default function PersonalJournal() {
-  const { journal, ready, message, setMessage, save } = useJournal();
+  const { journal, ready, message, setMessage, save, signedIn } = useJournal();
   const [date, setDate] = useState(""),
     [tab, setTab] = useState("Intake");
   useEffect(() => setDate(today()), []);
@@ -26,7 +27,7 @@ export default function PersonalJournal() {
     workouts = journal.workouts.filter((x) => x.date === date),
     known = intakes.filter((x) => x.kcal !== null),
     protein = intakes.filter((x) => x.protein !== null);
-  function addLog(e: React.FormEvent<HTMLFormElement>) {
+  async function addLog(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget,
       f = new FormData(form),
@@ -69,9 +70,9 @@ export default function PersonalJournal() {
                 ...journal.workouts,
               ],
             };
-      if (save(next)) {
+      if (await save(next)) {
         setDate(common.date);
-        setMessage("Entry saved on this device.");
+        setMessage("Entry saved to your account.");
         form.reset();
       }
     } catch (e) {
@@ -90,6 +91,19 @@ export default function PersonalJournal() {
     a.click();
     URL.revokeObjectURL(url);
   }
+  if (!signedIn)
+    return (
+      <section className="public-panel account-prompt">
+        <h2>Your records belong to you.</h2>
+        <p>{message || "Checking your account…"}</p>
+        <Link className="fitness-primary" href="/account">
+          Sign in or create an account →
+        </Link>
+        <Link className="fitness-secondary" href="/planner">
+          Make a one-time plan without login
+        </Link>
+      </section>
+    );
   return (
     <>
       {message && (
@@ -103,10 +117,13 @@ export default function PersonalJournal() {
       <div className="device-banner">
         <ShieldCheck size={20} />
         <p>
-          <strong>Saved on this device only.</strong> Anyone using this browser
-          profile may see these records. They won’t sync across devices;
-          clearing browser data removes them.
+          <strong>Saved to your personal account.</strong> Your meals, workouts,
+          plans, and progress are separate from gym staff records. Sign out on
+          shared devices.
         </p>
+        <Link className="fitness-secondary" href="/account">
+          My account
+        </Link>
         <button
           className="fitness-secondary"
           disabled={!ready}
@@ -117,7 +134,7 @@ export default function PersonalJournal() {
         </button>
       </div>
       <div className="journal-tabs">
-        {["Intake", "Exercise", "Saved plans"].map((t) => (
+        {["Intake", "Exercise", "Progress", "Saved plans"].map((t) => (
           <button
             className={tab === t ? "selected" : ""}
             key={t}
@@ -127,7 +144,7 @@ export default function PersonalJournal() {
             {t === "Saved plans" && <span>{journal.plans.length}</span>}
           </button>
         ))}
-        {tab !== "Saved plans" && (
+        {!["Saved plans", "Progress"].includes(tab) && (
           <label className="journal-date">
             Day
             <input
@@ -140,7 +157,9 @@ export default function PersonalJournal() {
           </label>
         )}
       </div>
-      {tab === "Saved plans" ? (
+      {tab === "Progress" ? (
+        <PersonalProgress journal={journal} save={save} ready={ready} />
+      ) : tab === "Saved plans" ? (
         <div className="saved-plans">
           {journal.plans.length ? (
             journal.plans.map((p) => (
@@ -183,14 +202,14 @@ export default function PersonalJournal() {
                 </details>
                 <button
                   className="remove-entry"
-                  onClick={() => {
+                  onClick={async () => {
                     if (
-                      save({
+                      await save({
                         ...journal,
                         plans: journal.plans.filter((x) => x.id !== p.id),
                       })
                     )
-                      setMessage("Saved plan removed from this device.");
+                      setMessage("Saved plan removed from your account.");
                   }}
                 >
                   <Trash2 size={13} />
@@ -435,8 +454,8 @@ export default function PersonalJournal() {
                       <button
                         className="remove-entry"
                         aria-label={"Remove " + x.name}
-                        onClick={() =>
-                          save({
+                        onClick={async () =>
+                          await save({
                             ...journal,
                             intakes: journal.intakes.filter(
                               (i) => i.id !== x.id,
@@ -473,8 +492,8 @@ export default function PersonalJournal() {
                     <button
                       className="remove-entry"
                       aria-label={"Remove " + x.name}
-                      onClick={() =>
-                        save({
+                      onClick={async () =>
+                        await save({
                           ...journal,
                           workouts: journal.workouts.filter(
                             (i) => i.id !== x.id,

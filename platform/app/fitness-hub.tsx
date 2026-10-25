@@ -16,6 +16,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { EXERCISES, FOODS } from "@/lib/fitness";
+import ExerciseExplorer from "./exercise-explorer";
 import PersonalPlanner from "./personal-planner";
 import PersonalJournal from "./personal-journal";
 import "./fitness.css";
@@ -24,7 +25,9 @@ const links = [
   ["planner", "Plan your next step", "/planner"],
   ["foods", "Food library", "/foods"],
   ["exercises", "Exercises", "/exercises"],
-  ["learn", "Learn", "/learn"],
+  ["diets", "Diet styles", "/diets"],
+  ["research", "Research", "/research"],
+  ["assistant", "Ask", "/assistant"],
   ["my-space", "My space", "/my-space"],
 ];
 export const SOURCES = {
@@ -50,7 +53,7 @@ export default function FitnessHub({ section }: { section: string }) {
     planner: [
       "YOUR LIFE. YOUR NEXT STEP.",
       "A plan you can make your own.",
-      "Get meal ideas and a weekly movement draft. Explore freely, edit the details, and save it on your device.",
+      "Explore meal and movement drafts without an account. Sign in only when you want to save your plan.",
     ],
     foods: [
       "KNOW WHAT’S ON YOUR PLATE",
@@ -70,7 +73,7 @@ export default function FitnessHub({ section }: { section: string }) {
     "my-space": [
       "YOUR OWN LITTLE CORNER",
       "Keep track. Keep going.",
-      "Log what you eat, record your movement, and return to your saved plans. No gym membership or sign-in needed.",
+      "Sign in to keep meals, workouts, plans, and progress in your own account. You do not need to join a gym.",
     ],
   };
   return (
@@ -88,6 +91,9 @@ export default function FitnessHub({ section }: { section: string }) {
             </Link>
           ))}
         </nav>
+        <Link href="/account" className="gym-link">
+          Sign in
+        </Link>
         <Link href="/manage" className="gym-link">
           For gyms
           <ArrowUpRight size={14} />
@@ -253,7 +259,8 @@ export default function FitnessHub({ section }: { section: string }) {
         )}
         {section === "planner" && <PersonalPlanner />}
         {section === "my-space" && <PersonalJournal />}
-        {(section === "foods" || section === "exercises") && (
+        {section === "exercises" && <ExerciseExplorer />}
+        {section === "foods" && (
           <>
             <div className="library-toolbar">
               <label className="library-search">
@@ -392,7 +399,7 @@ export default function FitnessHub({ section }: { section: string }) {
                 icon: ShieldCheck,
                 tag: "YOUR PERSONAL SPACE",
                 title: "You don’t need a gym to get started.",
-                body: "Plan and track independently. Your personal journal stays in this browser on this device. It isn’t sent to a gym, and clearing browser storage removes it. Export a backup when you need one.",
+                body: "Plan and track independently. Your journal is saved to your personal account after sign-in. It is separate from gym staff records. Export a copy when you need one.",
                 href: "/my-space",
                 cta: "Open My space",
               },

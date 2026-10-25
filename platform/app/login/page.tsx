@@ -5,11 +5,25 @@ import { redirect } from "next/navigation";
 import { login, setup } from "../actions";
 import { ArrowUpRight, Dumbbell, ShieldCheck } from "lucide-react";
 export const dynamic = "force-dynamic";
+export const metadata = { robots: { index: false, follow: false } };
 export default async function Login({
   searchParams,
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
+  if (process.env.VERCEL)
+    return (
+      <main className="login-page">
+        <section className="login-story">
+          <h1>Gym workspace</h1>
+          <p>
+            The staff workspace is being prepared for hosted storage. Public
+            fitness guides and personal planning are available now.
+          </p>
+          <Link href="/">Explore Gym Engine →</Link>
+        </section>
+      </main>
+    );
   if (await session()) redirect("/manage");
   const first = !db().prepare("SELECT id FROM staff LIMIT 1").get();
   const { error } = await searchParams;

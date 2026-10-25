@@ -3,6 +3,10 @@ import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 let database: DatabaseSync;
 export function db() {
+  if (process.env.VERCEL)
+    throw new Error(
+      "Gym operations require durable staff storage; local SQLite is disabled on Vercel.",
+    );
   if (database) return database;
   mkdirSync(join(process.cwd(), "data"), { recursive: true });
   database = new DatabaseSync(join(process.cwd(), "data", "gym-engine.sqlite"));

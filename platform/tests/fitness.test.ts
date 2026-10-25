@@ -106,3 +106,48 @@ test("corrupt storage is rejected rather than silently reset", () => {
   const good = { version: 1, intakes: [], workouts: [], plans: [badPlan] };
   assert.equal(readJournal(JSON.stringify(good)).plans[0].id, badPlan.id);
 });
+test("medical contexts and restrictive diet/timing choices do not produce automatic clinical prescriptions", () => {
+  assert.throws(() =>
+    makePlan({
+      ...DEFAULT_PROFILE,
+      medical: ["Diabetes or glucose-lowering medicine"],
+    }),
+  );
+  assert.throws(() =>
+    makePlan({ ...DEFAULT_PROFILE, dietStyle: "Keto · education only" }),
+  );
+  assert.throws(() =>
+    makePlan({
+      ...DEFAULT_PROFILE,
+      timing: "Intermittent fasting · learn first",
+    }),
+  );
+});
+test("seated and floor-free routines respect the functional preference", () => {
+  const seated = makePlan({
+    ...DEFAULT_PROFILE,
+    mobility: "Seated options",
+    goal: "Improve endurance",
+  });
+  assert.ok(
+    seated.routine.every((r) =>
+      r.items.every(
+        (x) =>
+          !x.includes("walk or cycle") &&
+          !x.includes("Bird dog") &&
+          !x.includes("Chair squat"),
+      ),
+    ),
+  );
+  const floorFree = makePlan({
+    ...DEFAULT_PROFILE,
+    mobility: "No floor exercises",
+  });
+  assert.ok(
+    floorFree.routine.every((r) =>
+      r.items.every(
+        (x) => !x.includes("Bird dog") && !x.includes("Glute bridge"),
+      ),
+    ),
+  );
+});

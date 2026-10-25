@@ -24,7 +24,7 @@ const foodName = (id: string) => FOODS.find((f) => f.id === id)?.name || id;
 export default function PersonalPlanner() {
   const [profile, setProfile] = useState<Profile>(DEFAULT_PROFILE),
     [plan, setPlan] = useState<FitnessPlan | null>(null);
-  const { journal, ready, message, setMessage, save } = useJournal();
+  const { journal, ready, message, setMessage, save, signedIn } = useJournal();
   function generate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -34,7 +34,7 @@ export default function PersonalPlanner() {
       setMessage(e instanceof Error ? e.message : "Check your preferences.");
     }
   }
-  function savePlan() {
+  async function savePlan() {
     if (!plan) return;
     if (
       !plan.name.trim() ||
@@ -45,22 +45,31 @@ export default function PersonalPlanner() {
       return;
     }
     if (
-      save({
+      await save({
         ...journal,
         plans: [plan, ...journal.plans.filter((p) => p.id !== plan.id)],
       })
     )
-      setMessage("Plan saved on this device. Find it in My space.");
+      setMessage("Plan saved to your account. Find it in My space.");
   }
   const select = (
     label: string,
-    key: "goal" | "diet" | "equipment" | "experience",
+    key:
+      | "goal"
+      | "diet"
+      | "equipment"
+      | "experience"
+      | "dietStyle"
+      | "timing"
+      | "focus"
+      | "mobility"
+      | "gender",
     options: string[],
   ) => (
     <label>
       {label}
       <select
-        value={profile[key]}
+        value={profile[key] || options[0]}
         onChange={(e) => setProfile({ ...profile, [key]: e.target.value })}
       >
         {options.map((x) => (
@@ -120,6 +129,79 @@ export default function PersonalPlanner() {
               </select>
             </label>
           </div>
+          <fieldset>
+            <legend>Eating pattern and movement needs</legend>
+            {select("Diet style", "dietStyle", [
+              "Balanced",
+              "Plant-forward",
+              "Meat-forward",
+              "Keto (education only)",
+              "Carnivore (education only)",
+            ])}
+            {select("Meal timing", "timing", [
+              "Regular meals",
+              "Intermittent fasting (learn first)",
+            ])}
+            <p className="public-small">
+              Food preferences and ingredient exclusions still apply.{" "}
+              <Link href="/diets">Compare diet styles and evidence →</Link>
+            </p>
+            {select("Movement focus", "focus", [
+              "Whole body",
+              "Upper body",
+              "Lower body",
+              "Core",
+            ])}
+            {select("Functional preference", "mobility", [
+              "No preference",
+              "No floor exercises",
+              "Seated options",
+            ])}
+            {select("Gender (optional)", "gender", [
+              "Prefer not to say",
+              "Woman",
+              "Man",
+              "Non-binary",
+              "Self-described",
+            ])}
+            <p className="public-small">
+              Exercise choices follow your goals and functional needs. Gender
+              alone does not determine a suitable routine.
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>Health context — optional, stays in this draft</legend>
+            <div className="ingredient-checks">
+              {[
+                "Pregnancy or breastfeeding",
+                "Diabetes or medicines affecting blood sugar",
+                "Kidney or heart condition",
+                "Pain, injury, or rehabilitation",
+                "Eating disorder history",
+              ].map((value) => (
+                <label key={value}>
+                  <input
+                    type="checkbox"
+                    checked={(profile.medical || []).includes(value)}
+                    onChange={(e) =>
+                      setProfile({
+                        ...profile,
+                        medical: e.target.checked
+                          ? [...(profile.medical || []), value]
+                          : (profile.medical || []).filter((x) => x !== value),
+                      })
+                    }
+                  />
+                  {value}
+                </label>
+              ))}
+            </div>
+            <p className="public-small">
+              These contexts need individual professional review before an
+              automatic plan. The public evidence library is always available.
+              Do not enter diagnoses or medical documents.
+            </p>
+          </fieldset>
           <fieldset>
             <legend>Exclude listed ingredients</legend>
             <div className="ingredient-checks">
@@ -373,11 +455,18 @@ export default function PersonalPlanner() {
                 disabled={!ready}
                 onClick={savePlan}
               >
-                Save plan on this device
+                Save plan to my account
                 <Plus size={16} />
               </button>
+              {!signedIn && (
+                <p className="fitness-message">
+                  <Link href="/account">
+                    Sign in or create an account to save this plan →
+                  </Link>
+                </p>
+              )}
               <p className="public-small save-note">
-                Includes your planning profile. No cloud backup.{" "}
+                Includes your entered planning profile and health preferences.{" "}
                 <Link href="/my-space">View saved plans →</Link>
               </p>
             </>

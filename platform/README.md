@@ -14,7 +14,7 @@ npm run dev
 
 Open http://127.0.0.1:3000 to explore without an account. `/planner`, `/foods`, `/exercises`, `/learn`, and `/my-space` are public. Gym staff use `/manage` and `/login`. On first staff setup, create a gym and owner account with a unique password of at least 12 characters. Setup is disabled under `NODE_ENV=production`. The preview binds to loopback only. Do not expose this development server publicly.
 
-Personal logs and saved plans use browser-local storage, separate from the gym database. They do not sync or belong to a gym. See [public and personal product scope](../PUBLIC-AND-PERSONAL.md) for storage, recommendation limits, and individual-account architecture.
+Personal plans, intake, workouts, and progress require an individual account and are stored server-side, separate from gym staff records. Development uses personal.sqlite; production requires PostgreSQL. Public learning and one-time planning remain anonymous. See [public and personal product scope](../PUBLIC-AND-PERSONAL.md) for storage, recommendation limits, and individual-account architecture.
 
 Records are stored in ignored `platform/data/gym-engine.sqlite`. They survive reloads and restarts. Never commit this directory. Stop the app before copying the complete data directory for a local backup; SQLite may have WAL sidecar files. Both source repository backups are separate Git bundles and do not back up application data.
 
@@ -46,7 +46,9 @@ Browser acceptance: create owner → add member → record a partial payment →
 - Complete staff invitations, owner/front-desk/trainer/member authorization, password recovery, session management, and stronger distributed login protection.
 - Add configurable membership plans, renewals/freezes, member editing, payment corrections/refunds, import/export, and a full invoice model.
 - Test backups and restoration, privacy/retention rules, monitored error reporting, and deployment security. Remove development-only setup from the deployed surface.
-- Add training/nutrition workflows and reviewed recommendation rules; AI and trained ML are not implemented in this milestone.
+- Expand the evidence library and obtain clinical review. Optional source-grounded AI explanations are prepared; trained ML is not implemented.
 - Move from server-action-only mutations to a versioned API when implementing the mobile client.
 
 Keep the existing Vercel deployment unchanged until its root configuration, durable database, environment, and migration are ready. The root of this repository still contains the historical Next.js app; this rebuild lives in `platform/`.
+
+See [deployment and integration setup](../DEPLOYMENT-AND-INTEGRATIONS.md) for database migrations, email verification, OAuth, optional AI, and SEO configuration.

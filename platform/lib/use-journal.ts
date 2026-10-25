@@ -1,49 +1,65 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { EMPTY_JOURNAL, readJournal, type Journal } from "./fitness";
-const STORAGE = "gym-engine-personal-v1";
 export function useJournal() {
   const [journal, setJournal] = useState<Journal>(EMPTY_JOURNAL),
     [ready, setReady] = useState(false),
-    [message, setMessage] = useState("");
-  const lastStored = useRef<string | null>(null);
+    [message, setMessage] = useState(""),
+    [signedIn, setSignedIn] = useState(false);
+  const revision = useRef(0),
+    saving = useRef(false);
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE);
-      setJournal(readJournal(raw));
-      lastStored.current = raw;
-      setReady(true);
-    } catch (e) {
-      setMessage(
-        e instanceof Error
-          ? e.message
-          : "Storage is unavailable. You can still explore and generate plans.",
-      );
-    }
+    let active = true;
+    fetch("/api/journal", { cache: "no-store" })
+      .then(async (r) => {
+        const d = await r.json();
+        if (!active) return;
+        if (!r.ok) {
+          setMessage(d.error || "Sign in to save your personal records.");
+          return;
+        }
+        setJournal(readJournal(JSON.stringify(d.journal)));
+        revision.current = d.revision;
+        setSignedIn(true);
+        setReady(true);
+      })
+      .catch(() => {
+        if (active)
+          setMessage("Personal records could not be loaded. Try reloading.");
+      });
+    return () => {
+      active = false;
+    };
   }, []);
-  function save(next: Journal) {
+  async function save(next: Journal) {
+    if (saving.current) {
+      setMessage("A save is in progress. Please wait.");
+      return false;
+    }
+    saving.current = true;
+    setReady(false);
     try {
       if (!ready)
         throw new Error(
-          "Device storage is unavailable. Nothing has been overwritten.",
+          "Sign in to save your records. One-time planning remains free.",
         );
-      if (localStorage.getItem(STORAGE) !== lastStored.current)
-        throw new Error(
-          "Your journal changed in another tab. Reload before saving; no records have been overwritten.",
-        );
-      const raw = JSON.stringify(next);
-      localStorage.setItem(STORAGE, raw);
-      lastStored.current = raw;
+      const r = await fetch("/api/journal", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ journal: next, revision: revision.current }),
+      });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Could not save records.");
+      revision.current = d.revision;
       setJournal(next);
       return true;
     } catch (e) {
-      setMessage(
-        e instanceof Error
-          ? e.message
-          : "Could not save. Device storage may be full.",
-      );
+      setMessage(e instanceof Error ? e.message : "Could not save records.");
       return false;
+    } finally {
+      saving.current = false;
+      setReady(signedIn);
     }
   }
-  return { journal, ready, message, setMessage, save };
+  return { journal, ready, message, setMessage, save, signedIn };
 }
