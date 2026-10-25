@@ -283,6 +283,13 @@ export function retrieveKnowledge(question: string) {
           "should",
           "does",
           "about",
+          "before",
+          "trying",
+          "know",
+          "want",
+          "information",
+          "please",
+          "tell",
         ].includes(w),
     );
   return GUIDES.map((guide) => ({

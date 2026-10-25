@@ -31,6 +31,7 @@ export default function PersonalPlanner() {
       setPlan(makePlan(profile));
       setMessage("Your draft is ready. Review and edit it below.");
     } catch (e) {
+      setPlan(null);
       setMessage(e instanceof Error ? e.message : "Check your preferences.");
     }
   }
