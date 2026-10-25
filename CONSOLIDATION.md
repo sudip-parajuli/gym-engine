@@ -1,6 +1,6 @@
 # Gym Engine consolidation
 
-Canonical repository: https://github.com/sudip-parajuli/gym-engine (renamed from `gymsite` on 25 October 2026). Rebuild branch: `rebuild/gym-engine`. New application: `platform/`.
+Canonical repository: https://github.com/sudip-parajuli/gym-engine (renamed from `gymsite` on 25 October 2026). Current application: `platform/`. The rebuild is consolidated through pull request #1 into `main`; `rebuild/gym-engine` is its implementation branch.
 
 ## Preserved histories
 
@@ -11,9 +11,9 @@ Canonical repository: https://github.com/sudip-parajuli/gym-engine (renamed from
 
 The new code combines the member-management direction of gymsite with the booking/payment/reporting concepts of the college project. This is a staged reimplementation, not a claim that all legacy features have been migrated. Diet/recipe and remaining booking workflows still need implementation and verification.
 
-## Repository retirement criteria
+## Repository retirement
 
-Do not delete the college repository until its branches, issues, releases, assets, database definitions, and deployment references have been inventoried; all needed material is preserved; the archive branch is verified on GitHub; and the replacement workflows are accepted. Git history backups do not preserve GitHub issues or project settings.
+The owner explicitly requested a single repository and deletion of the college repository. The college source history and database definitions are preserved in the archive branch and verified offline Git bundle. GitHub metadata was inventoried separately because Git history does not preserve issues or project settings.
 
 The canonical repository has been renamed to `gym-engine` and local origin updated. Vercel's Git connection still needs inspection before deployment changes.
 
@@ -22,3 +22,5 @@ The college repository was inventoried: one `main` branch, no tags, issues, rele
 ## Deployment
 
 The rebuild is local development software. SQLite must not be deployed to Vercel's ephemeral filesystem. PostgreSQL deployment and authentication/role hardening remain a separate milestone.
+
+Deletion was retried after re-inventorying the repository: GitHub again returned HTTP 403, 'Must have admin rights to Repository.' The current API credential cannot remove it. An authorized owner can finish under the college repository Settings > General > Danger Zone > Delete this repository. The college repository remains archived until that action succeeds; no deletion is claimed.
