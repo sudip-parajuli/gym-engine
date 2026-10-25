@@ -164,7 +164,7 @@ export default function Workspace({
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <Link className="brand" href="/">
+        <Link className="brand" href="/manage">
           <span className="brand-symbol">
             <Dumbbell size={22} />
           </span>
@@ -184,7 +184,7 @@ export default function Workspace({
           {nav.map(([key, label, Icon]) => (
             <Link
               key={key}
-              href={"/?view=" + key}
+              href={"/manage?view=" + key}
               className={"nav-item " + (view === key ? "selected" : "")}
             >
               <Icon size={19} />
@@ -297,7 +297,7 @@ export default function Workspace({
               role="status"
             >
               {params.error || params.success}
-              <Link href={"/?view=" + view} aria-label="Dismiss message">
+              <Link href={"/manage?view=" + view} aria-label="Dismiss message">
                 <X size={16} />
               </Link>
             </div>
@@ -418,7 +418,7 @@ export default function Workspace({
                       <i className="dot" />
                       Consistency builds community.
                     </span>
-                    <Link href="/?view=attendance">
+                    <Link href="/manage?view=attendance">
                       View attendance
                       <ArrowUpRight size={14} />
                     </Link>
@@ -434,7 +434,7 @@ export default function Workspace({
                       {soon.length + dues.length}
                     </span>
                   </div>
-                  <Link className="attention-row" href="/?view=members">
+                  <Link className="attention-row" href="/manage?view=members">
                     <span className="metric-icon orange">
                       <CalendarDays size={19} />
                     </span>
@@ -447,7 +447,7 @@ export default function Workspace({
                     </div>
                     <ChevronRight size={17} />
                   </Link>
-                  <Link className="attention-row" href="/?view=payments">
+                  <Link className="attention-row" href="/manage?view=payments">
                     <span className="metric-icon pink">
                       <Wallet size={19} />
                     </span>
@@ -476,7 +476,7 @@ export default function Workspace({
                     <h2>Your people</h2>
                     <p>A quick look at your newest members</p>
                   </div>
-                  <Link className="text-link" href="/?view=members">
+                  <Link className="text-link" href="/manage?view=members">
                     View all members
                     <ArrowUpRight size={15} />
                   </Link>

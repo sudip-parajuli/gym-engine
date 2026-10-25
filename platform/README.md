@@ -1,6 +1,6 @@
 # Gym Engine — operations foundation
 
-A responsive staff workspace for independent gyms in Nepal. This is the first functional rebuild milestone, not a production release.
+A public fitness hub, independent personal planning/tracking tools, and a responsive staff workspace for gyms in Nepal. This is a development milestone, not a production release.
 
 ## Run locally
 
@@ -12,7 +12,9 @@ npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. On the first run, create a gym and owner account with a unique password of at least 12 characters. Setup is disabled under `NODE_ENV=production`. The preview binds to loopback only. Do not expose this development server publicly.
+Open http://127.0.0.1:3000 to explore without an account. `/planner`, `/foods`, `/exercises`, `/learn`, and `/my-space` are public. Gym staff use `/manage` and `/login`. On first staff setup, create a gym and owner account with a unique password of at least 12 characters. Setup is disabled under `NODE_ENV=production`. The preview binds to loopback only. Do not expose this development server publicly.
+
+Personal logs and saved plans use browser-local storage, separate from the gym database. They do not sync or belong to a gym. See [public and personal product scope](../PUBLIC-AND-PERSONAL.md) for storage, recommendation limits, and individual-account architecture.
 
 Records are stored in ignored `platform/data/gym-engine.sqlite`. They survive reloads and restarts. Never commit this directory. Stop the app before copying the complete data directory for a local backup; SQLite may have WAL sidecar files. Both source repository backups are separate Git bundles and do not back up application data.
 

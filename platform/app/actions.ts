@@ -59,7 +59,7 @@ export async function setup(f: FormData) {
     error = e instanceof Error ? e.message : "Setup failed.";
   }
   if (error) redirect("/login?error=" + encodeURIComponent(error));
-  redirect("/");
+  redirect("/manage");
 }
 export async function login(f: FormData) {
   let error = "";
@@ -91,7 +91,7 @@ export async function login(f: FormData) {
     error = e instanceof Error ? e.message : "Could not sign in.";
   }
   if (error) redirect("/login?error=" + encodeURIComponent(error));
-  redirect("/");
+  redirect("/manage");
 }
 export async function logout() {
   await destroySession();
@@ -149,9 +149,9 @@ export async function addMember(f: FormData) {
   } catch (e) {
     error = e instanceof Error ? e.message : "Could not save member.";
   }
-  revalidatePath("/");
+  revalidatePath("/manage");
   redirect(
-    "/?view=members&" +
+    "/manage?view=members&" +
       (error
         ? "error=" + encodeURIComponent(error)
         : "success=Member+added.+Membership+invoice+is+ready."),
@@ -199,9 +199,9 @@ export async function recordPayment(f: FormData) {
   } catch (e) {
     error = e instanceof Error ? e.message : "Could not record payment.";
   }
-  revalidatePath("/");
+  revalidatePath("/manage");
   redirect(
-    "/?view=payments&" +
+    "/manage?view=payments&" +
       (error
         ? "error=" + encodeURIComponent(error)
         : "success=Payment+recorded.+Receipt+is+available."),
@@ -239,9 +239,9 @@ export async function checkIn(f: FormData) {
   } catch (e) {
     error = e instanceof Error ? e.message : "Could not check in.";
   }
-  revalidatePath("/");
+  revalidatePath("/manage");
   redirect(
-    "/?view=attendance&" +
+    "/manage?view=attendance&" +
       (error
         ? "error=" + encodeURIComponent(error)
         : "success=Member+checked+in."),

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { session } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -9,11 +10,14 @@ export default async function Login({
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
-  if (await session()) redirect("/");
+  if (await session()) redirect("/manage");
   const first = !db().prepare("SELECT id FROM staff LIMIT 1").get();
   const { error } = await searchParams;
   return (
     <main className="login-page">
+      <Link href="/" className="public-back">
+        ← Explore Gym Engine without signing in
+      </Link>
       <section className="login-story">
         <div className="brand">
           <span className="brand-symbol">

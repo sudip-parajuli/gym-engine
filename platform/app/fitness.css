@@ -1,0 +1,1701 @@
+.fitness-site {
+  --sage: #426c55;
+  --sage-light: #e9f0e8;
+  --cream: #fbfaf6;
+  --fitness-ink: #263c31;
+  --fitness-muted: #788278;
+  background: var(--cream);
+  color: var(--fitness-ink);
+  min-height: 100vh;
+}
+.fitness-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1360px;
+  margin: auto;
+  padding: 28px 40px;
+  border-bottom: 1px solid #e9e9df;
+}
+.fitness-header .brand-symbol,
+.fitness-footer .brand-symbol {
+  background: #456c54;
+  color: #f5f4df;
+}
+.fitness-engine {
+  font-weight: 500;
+}
+.fitness-header nav {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+.fitness-header nav a {
+  font-size: 11px;
+  color: #7c8275;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+.fitness-header nav a.current {
+  color: #3a624b;
+  font-weight: 700;
+  border-bottom: 2px solid #54775b;
+}
+.gym-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  color: #5d705f;
+  background: #eff1e8;
+  border-radius: 7px;
+  padding: 10px 13px;
+}
+.fitness-main {
+  max-width: 1280px;
+  padding: 0 40px;
+  margin: auto;
+}
+.fitness-hero {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  align-items: center;
+  gap: 70px;
+  padding: 85px 0 80px;
+}
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #71826c;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 1.8px;
+}
+.open-badge > span {
+  height: 5px;
+  width: 5px;
+  background: #7c996d;
+  border-radius: 50%;
+}
+.hero-copy h1 {
+  font-size: 58px;
+  line-height: 1.16;
+  letter-spacing: -2.8px;
+  margin: 26px 0 23px;
+  font-weight: 750;
+  color: #2d4535;
+}
+.hero-copy h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #77936c;
+}
+.hero-copy > p {
+  color: #8a8e7f;
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 430px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0 23px;
+}
+.fitness-primary,
+.fitness-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.fitness-primary {
+  background: #456e55;
+  color: #fff;
+}
+.fitness-primary:hover {
+  background: #345d44;
+}
+.fitness-secondary {
+  background: #fffef9;
+  color: #6c7b66;
+  border: 1px solid #e5e7da;
+}
+.fitness-secondary:hover {
+  background: #f0f2e8;
+}
+.fitness-primary:disabled,
+.fitness-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.hero-caption {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #9a9e8e;
+  font-size: 9px;
+}
+.hero-caption svg {
+  color: #7c9675;
+}
+.hero-caption > span {
+  padding: 0 4px;
+  color: #bcc1af;
+}
+.hero-board {
+  background: #e7ecdf;
+  border: 1px solid #dfe5d6;
+  border-radius: 15px;
+  padding: 26px 29px;
+  transform: rotate(2deg);
+  position: relative;
+  box-shadow: 14px 20px 0 #f0f0e6;
+}
+.board-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #99a28a;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+.board-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9eae86;
+}
+.board-title {
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 35px;
+  line-height: 1.35;
+  letter-spacing: -1.5px;
+  font-weight: 600;
+  margin: 28px 0 23px;
+  color: #57704e;
+}
+.week-strip {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.week-strip > span {
+  display: grid;
+  place-items: center;
+  background: #f6f7ed;
+  color: #a8ad95;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 10px;
+  border: 1px solid #dce3d0;
+}
+.week-strip > span.day-filled {
+  background: #799368;
+  border-color: #799368;
+  color: #fff;
+}
+.board-card {
+  background: #fafbf4;
+  border: 1px solid #dfe5d5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px 12px;
+  margin: 9px 0;
+}
+.board-card > div {
+  flex: 1;
+}
+.board-card strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 650;
+  color: #6f8064;
+}
+.board-card small {
+  display: block;
+  font-size: 8px;
+  color: #a5aa97;
+  margin-top: 6px;
+}
+.board-card > svg {
+  color: #a8b49b;
+}
+.board-icon {
+  height: 34px;
+  width: 34px;
+  border-radius: 9px;
+  background: #edf0dd;
+  color: #a4b073;
+  display: grid;
+  place-items: center;
+}
+.board-icon.movement {
+  background: #f2eadd;
+  color: #c5ad7e;
+}
+.board-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #a2ad92;
+  margin-top: 27px;
+}
+.floating-sticker {
+  position: absolute;
+  right: -27px;
+  bottom: 17px;
+  background: #f5eccd;
+  border: 1px solid #e9ddbb;
+  border-radius: 6px;
+  transform: rotate(-7deg);
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #a48d54;
+  box-shadow: 0 5px 10px #5d60300a;
+}
+.fitness-intro {
+  text-align: center;
+  margin: 30px 0 33px;
+}
+.fitness-kicker {
+  display: block;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 1.7px;
+  color: #99a08a;
+  text-transform: uppercase;
+}
+.fitness-intro h2 {
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -1px;
+  margin: 14px 0 11px;
+}
+.fitness-intro > p:last-child {
+  font-size: 12px;
+  color: #989e8f;
+}
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+}
+.journey-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7da;
+  border-radius: 11px;
+  padding: 27px 25px;
+  background: #f0f2e8;
+  transition: transform 0.2s;
+}
+.journey-card:hover {
+  transform: translateY(-4px);
+}
+.journey-1 {
+  background: #f3eee3;
+  border-color: #eae3d6;
+}
+.journey-2 {
+  background: #eeedf3;
+  border-color: #e4e1ec;
+}
+.journey-icon {
+  height: 43px;
+  width: 43px;
+  display: grid;
+  place-items: center;
+  background: #fff9;
+  border-radius: 12px;
+  color: #94a17c;
+  margin-bottom: 25px;
+}
+.journey-1 .journey-icon {
+  color: #b6a075;
+}
+.journey-2 .journey-icon {
+  color: #a194b4;
+}
+.journey-card > small {
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  color: #9aa085;
+  font-weight: 600;
+}
+.journey-card h3 {
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  margin: 13px 0 11px;
+}
+.journey-card p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #969b88;
+  flex: 1;
+}
+.journey-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: #738166;
+  margin-top: 30px;
+}
+.public-gym-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid #e8e7db;
+  border-radius: 10px;
+  padding: 28px 30px;
+  margin: 47px 0 55px;
+  background: #f6f5ed;
+}
+.public-gym-callout h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 12px 0 9px;
+  letter-spacing: -0.6px;
+}
+.public-gym-callout p {
+  font-size: 11px;
+  color: #939a87;
+}
+.fitness-footer {
+  max-width: 1280px;
+  margin: auto;
+  padding: 29px 40px 37px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-top: 1px solid #e8e9de;
+}
+.fitness-footer .brand {
+  font-size: 19px;
+}
+.fitness-footer .brand-symbol {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+}
+.fitness-footer p {
+  font-size: 10px;
+  color: #a2a58f;
+  line-height: 1.8;
+}
+.fitness-footer > div {
+  display: grid;
+  gap: 9px;
+  margin-left: auto;
+}
+.fitness-footer a:not(.brand) {
+  font-size: 9px;
+  color: #8e987f;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.fitness-footer small {
+  font-size: 8px;
+  color: #b4b7a4;
+}
+.public-page-heading {
+  padding: 58px 0 32px;
+  max-width: 730px;
+}
+.public-page-heading h1 {
+  font-size: 39px;
+  font-weight: 700;
+  letter-spacing: -1.7px;
+  line-height: 1.3;
+  margin: 17px 0 14px;
+}
+.public-page-heading > p:last-child {
+  color: #929a85;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.public-panel {
+  background: #fffef9;
+  border: 1px solid #e6e9db;
+  border-radius: 12px;
+  padding: 25px;
+}
+.public-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #7a8a6a;
+  margin-bottom: 25px;
+}
+.public-panel-title h2 {
+  font-size: 16px;
+  color: #52674c;
+  font-weight: 600;
+}
+.public-small {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #98a087;
+}
+.fitness-site label {
+  color: #7e8b6d;
+  font-size: 11px;
+}
+.fitness-site input,
+.fitness-site select,
+.fitness-site textarea {
+  background: #fefdf9;
+  border: 1px solid #e3e8d6;
+  color: #667b58;
+  font-size: 12px;
+  border-radius: 7px;
+  padding: 12px;
+  margin: 8px 0 19px;
+  width: 100%;
+  display: block;
+  font-family: inherit;
+}
+.fitness-site input:focus,
+.fitness-site select:focus,
+.fitness-site textarea:focus {
+  outline: 2px solid #c3d1a8;
+  outline-offset: 1px;
+}
+.fitness-site textarea {
+  resize: vertical;
+  line-height: 1.7;
+  min-height: 85px;
+}
+.fitness-site input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  margin: 0;
+  accent-color: #6b8755;
+  flex-shrink: 0;
+}
+.planner-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.15fr;
+  gap: 30px;
+  align-items: start;
+  margin-bottom: 55px;
+}
+.preference-form {
+  position: sticky;
+  top: 20px;
+}
+.preference-form fieldset {
+  border: 1px solid #e7eadf;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0 0 20px;
+}
+.preference-form legend {
+  font-size: 11px;
+  color: #7c8a6a;
+  padding: 0 5px;
+}
+.ingredient-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  margin-bottom: 12px;
+}
+.ingredient-checks label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  text-transform: capitalize;
+}
+.estimate-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  font-size: 11px !important;
+}
+.body-fields {
+  background: #f7f8ee;
+  padding: 16px 15px;
+  border: 1px solid #e8ecdc;
+  border-radius: 9px;
+  margin-bottom: 17px;
+}
+.body-fields .form-row {
+  gap: 12px;
+}
+.planner-empty {
+  min-height: 570px;
+  background: #f0f3e8;
+  border: 1px dashed #d8e0c9;
+  border-radius: 12px;
+  padding: 70px 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.large-leaf {
+  color: #b1be97;
+  margin-bottom: 36px;
+}
+.planner-empty h2 {
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  color: #71865e;
+  line-height: 1.4;
+  margin: 20px 0;
+}
+.planner-empty p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #9ca78b;
+  max-width: 300px;
+}
+.planning-principles {
+  display: grid;
+  gap: 13px;
+  justify-content: center;
+  margin-top: 35px;
+}
+.planning-principles span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #8fa07c;
+}
+.result-heading h2 {
+  font-size: 27px;
+  letter-spacing: -1px;
+  margin: 17px 0 12px;
+}
+.result-heading > p {
+  font-size: 11px;
+  color: #9ca28c;
+  margin-bottom: 20px;
+}
+.goal-guidance {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #8a9776;
+  padding: 15px;
+  background: #eef2e4;
+  border-radius: 8px;
+  margin: 0 0 20px;
+}
+.energy-note {
+  display: flex;
+  gap: 13px;
+  padding: 20px;
+  background: #f6efda;
+  border: 1px solid #eae1c8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: #b39e66;
+}
+.energy-note > svg {
+  flex-shrink: 0;
+}
+.energy-note strong {
+  font-size: 18px;
+  color: #8e815a;
+}
+.energy-note p {
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 8px 0;
+  color: #aa9c78;
+}
+.energy-note a {
+  font-size: 9px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.plan-editor {
+  margin-bottom: 20px;
+}
+.plan-editor > .public-small {
+  margin: -8px 0 20px;
+}
+.meal-edit {
+  display: grid !important;
+  grid-template-columns: 80px 1fr;
+  align-items: start;
+  gap: 13px;
+}
+.meal-edit > span {
+  margin-top: 18px;
+}
+.meal-edit textarea {
+  min-height: 70px;
+  margin-top: 0;
+  margin-bottom: 13px;
+}
+.routine-edit > strong {
+  display: block;
+  font-size: 12px;
+  color: #6e815c;
+}
+.routine-edit > strong > span {
+  font-size: 9px;
+  color: #a7af96;
+  font-weight: 400;
+  margin-left: 7px;
+}
+.routine-edit textarea {
+  min-height: 160px;
+  font-size: 11px;
+}
+.save-note {
+  margin-top: 13px;
+}
+.save-note a {
+  color: #6d8858;
+  text-decoration: underline;
+}
+.library-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.library-search {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+  background: #fffef9;
+  border: 1px solid #e3e7d8;
+  border-radius: 8px;
+  padding: 10px 13px;
+  color: #a8b095;
+}
+.library-search input {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 180px;
+  background: none;
+  font-size: 11px;
+}
+.library-search input:focus {
+  outline: none;
+}
+.library-filters {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.library-filters button {
+  padding: 9px 12px;
+  border-radius: 6px;
+  background: none;
+  color: #9ba48a;
+  font-size: 10px;
+}
+.library-filters button.chosen {
+  background: #e8eddd;
+  color: #6f8359;
+}
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+}
+.food-card {
+  background: #fffef9;
+  border: 1px solid #e5e8da;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.food-art {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  background: #e9efdb;
+  color: #a3b386;
+}
+.food-art-1 {
+  background: #f0e8d6;
+  color: #bcaa7e;
+}
+.food-art-2 {
+  background: #e6ecdf;
+  color: #a0af8b;
+}
+.food-art-3 {
+  background: #f1e6dc;
+  color: #bea28c;
+}
+.food-art > span {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  color: #829267;
+}
+.food-art-1 > span {
+  color: #a4956d;
+}
+.food-art-3 > span {
+  color: #a9917f;
+}
+.food-card-body {
+  padding: 24px;
+}
+.food-card h2 {
+  font-size: 17px;
+  margin: 12px 0;
+}
+.food-card p,
+.exercise-card > p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #939f80;
+}
+.food-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+.food-tags > span {
+  padding: 5px 7px;
+  border: 1px solid #edf0e4;
+  border-radius: 5px;
+  font-size: 8px;
+  color: #a3af90;
+  line-height: 1.6;
+}
+.public-source {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #a4ad93;
+  border-top: 1px solid #e6eadb;
+  padding: 24px 0;
+  margin: 30px 0;
+}
+.public-source a {
+  color: #7d9562;
+  text-decoration: underline;
+}
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+}
+.exercise-card {
+  border: 1px solid #e4e8d7;
+  border-radius: 11px;
+  background: #fffef9;
+  padding: 24px;
+}
+.exercise-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #d0d8bc;
+  font:
+    32px Georgia,
+    serif;
+  margin-bottom: 25px;
+}
+.exercise-number > svg {
+  color: #a8b690;
+}
+.exercise-card h2 {
+  font-size: 20px;
+  margin: 14px 0;
+}
+.exercise-adapt {
+  background: #f5f7ed;
+  border-radius: 7px;
+  padding: 14px;
+  margin-top: 20px;
+}
+.exercise-adapt strong {
+  font-size: 9px;
+  font-weight: 600;
+  color: #8d9e76;
+}
+.exercise-adapt p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #a1ad8e;
+  margin-top: 7px;
+}
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+  margin-bottom: 50px;
+}
+.learn-card {
+  display: flex;
+  flex-direction: column;
+  background: #fffef9;
+  border: 1px solid #e5e9d8;
+  border-radius: 11px;
+  padding: 27px;
+}
+.learn-card .journey-icon {
+  background: #f1f5e7;
+}
+.learn-card h2 {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+.learn-card p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #8f9d7a;
+  flex: 1;
+}
+.learn-card > a {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 25px;
+  font-size: 10px;
+  color: #76945b;
+}
+.device-banner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #edf2e3;
+  border: 1px solid #dfe7d0;
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: #8ca570;
+  margin-bottom: 25px;
+}
+.device-banner > svg {
+  flex-shrink: 0;
+}
+.device-banner p {
+  font-size: 10px;
+  line-height: 1.8;
+  flex: 1;
+  color: #8ea278;
+}
+.device-banner strong {
+  color: #718c5b;
+  font-weight: 600;
+}
+.device-banner .fitness-secondary {
+  font-size: 10px;
+  padding: 11px 14px;
+}
+.journal-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #e4e9d7;
+  padding-bottom: 14px;
+  margin-bottom: 25px;
+}
+.journal-tabs > button {
+  background: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #a5ad95;
+}
+.journal-tabs > button.selected {
+  background: #e5edd8;
+  color: #698951;
+  font-weight: 600;
+}
+.journal-tabs > button span {
+  font-size: 8px;
+  background: #f4f6ec;
+  padding: 3px 6px;
+  border-radius: 4px;
+  margin-left: 7px;
+}
+.journal-date {
+  margin-left: auto;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px !important;
+}
+.journal-date input {
+  width: auto;
+  margin: 0;
+  padding: 9px 10px;
+  font-size: 10px;
+}
+.journal-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+.journal-summary > div {
+  background: #fffef9;
+  border: 1px solid #e5ead8;
+  border-radius: 9px;
+  padding: 22px;
+}
+.journal-summary span {
+  display: block;
+  font-size: 10px;
+  color: #a1ad8e;
+  margin-bottom: 13px;
+}
+.journal-summary strong {
+  display: block;
+  font-size: 24px;
+  font-family: Manrope, Arial;
+  font-weight: 600;
+  color: #6f8858;
+  letter-spacing: -0.7px;
+}
+.journal-summary small {
+  display: block;
+  font-size: 9px;
+  line-height: 1.8;
+  color: #a7b096;
+  margin-top: 9px;
+}
+.journal-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 50px;
+}
+.log-list .public-panel-title {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #edf0e3;
+}
+.journal-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 20px 0;
+  border-bottom: 1px solid #edf0e3;
+}
+.journal-entry > div {
+  flex: 1;
+  min-width: 0;
+}
+.journal-entry strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7b9166;
+  overflow-wrap: anywhere;
+}
+.journal-entry p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #a2af90;
+  margin-top: 7px;
+}
+.journal-entry small {
+  display: block;
+  font-size: 9px;
+  line-height: 1.8;
+  color: #acb499;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+.entry-icon {
+  height: 33px;
+  width: 33px;
+  display: grid;
+  place-items: center;
+  background: #eff3e6;
+  color: #a4b58a;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+.remove-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  color: #aeb698;
+  font-size: 9px;
+  padding: 5px;
+}
+.remove-entry:hover {
+  color: #a67367;
+}
+.public-empty {
+  text-align: center;
+  max-width: 400px;
+  padding: 45px 25px;
+  margin: auto;
+}
+.public-empty > span {
+  color: #bfcca8;
+  display: block;
+  margin-bottom: 20px;
+}
+.public-empty h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #8fa475;
+  line-height: 1.5;
+}
+.public-empty p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #a8b595;
+  margin: 12px 0 22px;
+}
+.saved-plans {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 50px;
+}
+.saved-plan h2 {
+  font-size: 21px;
+  margin: 12px 0;
+}
+.saved-plan > div > p {
+  font-size: 10px;
+  color: #9dad87;
+}
+.saved-plan details {
+  margin: 20px 0;
+}
+.saved-plan summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 11px;
+  color: #78995e;
+  border-top: 1px solid #e9efdc;
+  padding: 16px 0;
+}
+.saved-plan-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.saved-plan-details > div {
+  background: #f5f8ec;
+  border-radius: 7px;
+  padding: 15px;
+}
+.saved-plan-details strong {
+  font-size: 11px;
+  color: #8da773;
+}
+.saved-plan-details p,
+.saved-plan-details li {
+  font-size: 10px;
+  color: #a4b68b;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.saved-plan-details p {
+  margin-top: 8px;
+}
+.saved-plan-details ul {
+  padding-left: 15px;
+}
+.fitness-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: #e9f0df;
+  color: #748f58;
+  font-size: 12px;
+  line-height: 1.7;
+  border: 1px solid #dce7ce;
+  border-radius: 8px;
+  padding: 15px 18px;
+  margin: 25px 0;
+}
+.fitness-message > button {
+  background: none;
+  color: inherit;
+  font-size: 22px;
+}
+.public-back {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 10px;
+  color: #9a8aac;
+  z-index: 5;
+}
+/* Keep secondary text readable on the pale surfaces. */
+.public-small,
+.food-card p,
+.exercise-card > p,
+.learn-card p,
+.hero-copy > p {
+  color: #7c876e;
+}
+.fitness-kicker {
+  color: #7d8d6c;
+}
+.hero-caption,
+.food-tags > span,
+.public-source {
+  color: #859276;
+}
+@media (max-width: 1150px) {
+  .fitness-header {
+    gap: 15px;
+    padding: 23px 27px;
+  }
+  .fitness-header nav {
+    gap: 14px;
+  }
+  .fitness-header nav a {
+    font-size: 10px;
+  }
+  .fitness-main {
+    padding: 0 30px;
+  }
+  .fitness-hero {
+    gap: 40px;
+    padding-top: 65px;
+  }
+  .hero-copy h1 {
+    font-size: 47px;
+    letter-spacing: -2px;
+  }
+  .hero-caption {
+    font-size: 8px;
+    gap: 4px;
+  }
+  .hero-board {
+    padding: 23px;
+  }
+  .board-title {
+    font-size: 30px;
+  }
+  .board-card strong {
+    font-size: 9px;
+  }
+  .board-card small {
+    font-size: 7px;
+  }
+  .food-grid,
+  .exercise-grid,
+  .learn-grid {
+    gap: 17px;
+  }
+  .planner-layout {
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .preference-form {
+    padding: 20px;
+  }
+  .journal-layout {
+    gap: 18px;
+  }
+  .public-panel {
+    padding: 20px;
+  }
+  .fitness-header .brand {
+    font-size: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .fitness-header {
+    flex-wrap: wrap;
+    gap: 15px 20px;
+  }
+  .fitness-header nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    overflow-x: auto;
+  }
+  .fitness-header nav a {
+    font-size: 10px;
+  }
+  .fitness-hero {
+    gap: 30px;
+    padding: 50px 0;
+  }
+  .hero-copy h1 {
+    font-size: 40px;
+  }
+  .hero-copy > p {
+    font-size: 12px;
+  }
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+  .hero-caption {
+    flex-wrap: wrap;
+    line-height: 1.8;
+  }
+  .hero-board {
+    padding: 20px;
+  }
+  .board-title {
+    font-size: 26px;
+  }
+  .week-strip {
+    gap: 6px;
+  }
+  .week-strip > span {
+    width: 28px;
+    height: 28px;
+  }
+  .board-card {
+    padding: 12px 8px;
+    gap: 8px;
+  }
+  .board-card small {
+    line-height: 1.7;
+  }
+  .board-icon {
+    width: 27px;
+    height: 27px;
+  }
+  .floating-sticker {
+    font-size: 8px;
+    right: -12px;
+  }
+  .journey-grid {
+    gap: 15px;
+  }
+  .journey-card {
+    padding: 22px 18px;
+  }
+  .journey-card h3 {
+    font-size: 16px;
+  }
+  .public-gym-callout {
+    padding: 24px;
+    gap: 20px;
+  }
+  .public-gym-callout h2 {
+    font-size: 18px;
+  }
+  .fitness-footer {
+    padding: 25px 30px;
+    gap: 25px;
+  }
+  .fitness-footer > small {
+    display: none;
+  }
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+  .preference-form {
+    position: static;
+  }
+  .planner-empty {
+    min-height: 400px;
+    padding: 40px;
+  }
+  .food-grid,
+  .exercise-grid,
+  .learn-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .public-page-heading h1 {
+    font-size: 34px;
+  }
+  .device-banner {
+    padding: 17px;
+  }
+  .journal-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .journal-layout .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .journal-summary strong {
+    font-size: 21px;
+  }
+}
+@media (max-width: 600px) {
+  .fitness-header {
+    padding: 20px 19px 12px;
+    gap: 14px;
+  }
+  .fitness-header .brand {
+    font-size: 20px;
+  }
+  .fitness-header .brand-symbol {
+    width: 31px;
+    height: 31px;
+    margin-right: 7px;
+  }
+  .gym-link {
+    font-size: 10px;
+    padding: 9px 11px;
+  }
+  .fitness-header nav {
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 0 0 3px;
+  }
+  .fitness-header nav a {
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .fitness-main {
+    padding: 0 21px;
+  }
+  .fitness-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 38px 0 42px;
+  }
+  .hero-copy h1 {
+    font-size: 43px;
+    letter-spacing: -2px;
+    margin: 23px 0 21px;
+  }
+  .hero-copy > p {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .hero-actions {
+    margin: 25px 0 18px;
+    gap: 9px;
+  }
+  .fitness-primary,
+  .fitness-secondary {
+    font-size: 10px;
+    padding: 13px 15px;
+    gap: 7px;
+  }
+  .hero-caption {
+    font-size: 8px;
+    gap: 4px;
+  }
+  .hero-caption > span {
+    padding: 0 1px;
+  }
+  .hero-board {
+    margin: 0 8px 15px 1px;
+    padding: 23px;
+    max-width: 430px;
+  }
+  .board-title {
+    font-size: 29px;
+  }
+  .week-strip {
+    gap: 9px;
+  }
+  .week-strip > span {
+    width: 32px;
+    height: 32px;
+  }
+  .board-card strong {
+    font-size: 10px;
+  }
+  .board-card small {
+    font-size: 8px;
+  }
+  .board-card {
+    padding: 14px 10px;
+  }
+  .board-icon {
+    height: 30px;
+    width: 30px;
+  }
+  .board-bottom {
+    font-size: 6px;
+  }
+  .floating-sticker {
+    right: -13px;
+  }
+  .fitness-intro {
+    margin: 20px 0 25px;
+  }
+  .fitness-intro h2 {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .fitness-intro > p:last-child {
+    font-size: 11px;
+  }
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .journey-card {
+    padding: 25px;
+  }
+  .journey-card h3 {
+    font-size: 21px;
+  }
+  .journey-card p {
+    font-size: 12px;
+  }
+  .journey-icon {
+    margin-bottom: 20px;
+  }
+  .journey-cta {
+    margin-top: 23px;
+    font-size: 11px;
+  }
+  .public-gym-callout {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 30px 0 35px;
+    padding: 24px;
+  }
+  .public-gym-callout h2 {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .public-gym-callout p {
+    font-size: 11px;
+    line-height: 1.9;
+  }
+  .fitness-footer {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px 21px 30px;
+  }
+  .fitness-footer p {
+    font-size: 9px;
+    margin-left: auto;
+  }
+  .fitness-footer > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .public-page-heading {
+    padding: 35px 0 27px;
+  }
+  .public-page-heading h1 {
+    font-size: 31px;
+    letter-spacing: -1.1px;
+  }
+  .public-page-heading > p:last-child {
+    font-size: 12px;
+  }
+  .planner-layout {
+    gap: 22px;
+    margin-bottom: 35px;
+  }
+  .public-panel {
+    padding: 21px;
+  }
+  .preference-form .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .fitness-site input,
+  .fitness-site select,
+  .fitness-site textarea {
+    font-size: 12px;
+    padding: 11px 9px;
+  }
+  .fitness-site label {
+    font-size: 10px;
+  }
+  .ingredient-checks {
+    gap: 14px;
+  }
+  .public-small {
+    font-size: 10px;
+  }
+  .planner-empty {
+    padding: 40px 24px;
+    min-height: 430px;
+  }
+  .planner-empty h2 {
+    font-size: 30px;
+  }
+  .result-heading h2 {
+    font-size: 26px;
+  }
+  .meal-edit {
+    grid-template-columns: 65px 1fr;
+    gap: 9px;
+  }
+  .routine-edit > strong > span {
+    display: block;
+    margin: 5px 0;
+  }
+  .energy-note {
+    padding: 17px;
+  }
+  .energy-note strong {
+    font-size: 16px;
+  }
+  .food-grid,
+  .exercise-grid,
+  .learn-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .library-toolbar {
+    gap: 15px;
+  }
+  .library-search {
+    width: 100%;
+  }
+  .library-search input {
+    width: 100%;
+  }
+  .library-filters {
+    gap: 4px;
+  }
+  .library-filters button {
+    font-size: 9px;
+    padding: 8px 10px;
+  }
+  .food-art {
+    height: 140px;
+  }
+  .food-card-body {
+    padding: 22px;
+  }
+  .food-card h2 {
+    font-size: 21px;
+  }
+  .food-card p,
+  .exercise-card > p {
+    font-size: 12px;
+  }
+  .food-tags > span {
+    font-size: 9px;
+  }
+  .exercise-card {
+    padding: 24px;
+  }
+  .learn-card {
+    padding: 25px;
+  }
+  .learn-card h2 {
+    font-size: 22px;
+  }
+  .learn-card p {
+    font-size: 12px;
+  }
+  .device-banner {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 17px;
+  }
+  .device-banner p {
+    font-size: 10px;
+  }
+  .device-banner .fitness-secondary {
+    margin-left: 30px;
+    padding: 9px 12px;
+  }
+  .journal-tabs {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .journal-tabs > button {
+    font-size: 10px;
+    padding: 9px 11px;
+  }
+  .journal-date {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: space-between;
+  }
+  .journal-date input {
+    font-size: 10px;
+    margin: 0;
+    padding: 8px 10px;
+  }
+  .journal-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .journal-summary > div {
+    padding: 17px;
+  }
+  .journal-summary > div:first-child {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .journal-summary > div:first-child span {
+    margin: 0;
+  }
+  .journal-summary strong {
+    font-size: 19px;
+  }
+  .journal-summary span {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+  .journal-summary small {
+    font-size: 8px;
+  }
+  .journal-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .journal-layout .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .journal-entry strong {
+    font-size: 12px;
+  }
+  .journal-entry p {
+    font-size: 10px;
+  }
+  .saved-plan h2 {
+    font-size: 20px;
+  }
+  .saved-plan-details {
+    grid-template-columns: 1fr;
+  }
+  .public-back {
+    font-size: 9px;
+    top: 8px;
+    right: 15px;
+  }
+  .login-page .login-story {
+    padding-top: 35px;
+  }
+}

@@ -6,6 +6,8 @@ Status: product direction recorded 25 October 2026. The operations foundation is
 
 Help a gym run its daily operations and help its members follow achievable fitness and nutrition plans. The owner should know who needs attention, what money is due, and how the business is performing without assembling spreadsheets.
 
+Expanded audience: public visitors, gym-goers, fitness enthusiasts, and independent exercisers. Public knowledge and draft diet/routine recommendations require no login. Individuals must be able to plan and track without joining a gym. The implemented public and browser-local personal tools, plus the independent-account roadmap, are detailed in `PUBLIC-AND-PERSONAL.md`.
+
 ## Initial repository findings
 
 - College project: PHP pages with PDO database access, member profiles, package bookings, payment-status workflows, registration/booking reports, and recipe recommendations.
