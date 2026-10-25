@@ -1,6 +1,6 @@
 # Gym Engine consolidation
 
-Canonical repository candidate: the former `gymsite` repository. Rebuild branch: `rebuild/gym-engine`. New application: `platform/`.
+Canonical repository: https://github.com/sudip-parajuli/gym-engine (renamed from `gymsite` on 25 October 2026). Rebuild branch: `rebuild/gym-engine`. New application: `platform/`.
 
 ## Preserved histories
 
@@ -15,7 +15,9 @@ The new code combines the member-management direction of gymsite with the bookin
 
 Do not delete the college repository until its branches, issues, releases, assets, database definitions, and deployment references have been inventoried; all needed material is preserved; the archive branch is verified on GitHub; and the replacement workflows are accepted. Git history backups do not preserve GitHub issues or project settings.
 
-Renaming the canonical repository to `gym-engine` is authorized by the owner. Update local origin and inspect Vercel's Git connection after renaming. GitHub's redirect is useful but should not be the long-term configuration.
+The canonical repository has been renamed to `gym-engine` and local origin updated. Vercel's Git connection still needs inspection before deployment changes.
+
+The college repository was inventoried: one `main` branch, no tags, issues, releases, deployments, wiki, or GitHub Pages. Its archive branch hash was verified on the canonical remote. GitHub rejected the authorized delete request with HTTP 403, so the college repository was archived and its description/homepage point to Gym Engine. It has not been deleted. Repository metadata and retirement results were saved alongside the offline backups.
 
 ## Deployment
 

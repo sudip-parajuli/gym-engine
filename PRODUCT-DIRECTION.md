@@ -1,6 +1,6 @@
 # Gym Engine — product direction and consolidation plan
 
-Status: proposed foundation, 25 October 2026. Repository inspection only; no remote changes or deployments performed.
+Status: product direction recorded 25 October 2026. The operations foundation is implemented in `platform/`; see `CONSOLIDATION.md` for current remote repository changes. No production deployment has been performed.
 
 ## Product promise
 
@@ -18,7 +18,7 @@ Help a gym run its daily operations and help its members follow achievable fitne
 
 ## First release
 
-Provisional audience: independent gyms, with the data model capable of separating multiple gyms. Market, currency, payment providers, and language remain product decisions.
+Confirmed audience: independent gyms in Nepal, with multiple gyms supported later. Initial product defaults: NPR, Asia/Kathmandu, English, and manually recorded cash/digital payments.
 
 Roles: owner/admin, front desk, trainer, member. Trainers access assigned members; members access their own records. Enforce authorization on the server.
 
