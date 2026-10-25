@@ -1,3 +1,14 @@
+# Gym Engine
+
+A new operations workspace for independent gyms in Nepal is being developed in **platform/**.
+
+- [Run the rebuild locally](platform/README.md)
+- [Product direction](PRODUCT-DIRECTION.md)
+- [Repository consolidation and history preservation](CONSOLIDATION.md)
+
+The root application below is the historical version. Its Vercel deployment is not switched to the rebuild yet.
+
+---
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
