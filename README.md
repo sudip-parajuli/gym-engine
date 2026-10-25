@@ -1,45 +1,96 @@
 # Gym Engine
 
-A fitness platform for independent gyms in Nepal, gym-goers, and fitness enthusiasts. This is the single maintained repository for the former `gymsite` and bachelor gym-management projects.
+**Learn about fitness. Build a routine. Track your progress. Run your gym.**
 
-The current application lives in **[platform/](platform/)**. The repository-root application is retained as historical source; do not use its old startup instructions to run the rebuild.
+Gym Engine is a web platform for gym-goers, fitness enthusiasts, independent exercisers, and gym operators. It brings public fitness education, personal planning and tracking, and daily gym operations into connected experiences. The initial gym-management audience is independent gyms in Nepal, with broader and multi-gym support planned.
 
-## Start locally
+[![Platform checks](https://github.com/sudip-parajuli/gym-engine/actions/workflows/platform.yml/badge.svg?branch=main)](https://github.com/sudip-parajuli/gym-engine/actions/workflows/platform.yml)
 
-Requires Node.js 22.17 or newer.
+**Status:** active development. The local application works; production services and several advanced workflows still need configuration or implementation. See [feature status](docs/features.md) before evaluating it for live use.
+
+![Gym Engine public fitness hub](docs/assets/overview.png)
+
+## Who is it for?
+
+| Audience      | Experience                                                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Visitors      | Read fitness and diet guides, explore foods and exercises, ask the research helper, and create one-time drafts without signing in. |
+| Individuals   | Create an account to save plans, record food intake and workouts, and follow personal progress. No gym membership is required.     |
+| Gym operators | Manage members, memberships, recorded payments, attendance, and daily reports through a separate staff workspace.                  |
+
+## Features
+
+### Fitness knowledge, open to everyone
+
+- Evidence guides covering balanced, plant-based, keto, meat-forward/carnivore, fasting, and DASH topics, plus accessible movement and individual training needs.
+- Food references with listed ingredient exclusions and practical uses.
+- Exercise references filtered by muscle group, home/gym equipment, and seated/standing/floor position.
+- A research helper that retrieves relevant guides and original sources. Optional AI explanations are prepared and require configuration and visitor consent.
+
+### Personal planning and progress
+
+- Editable meal and exercise drafts based on goals, food preference, experience, available days, equipment, and functional needs.
+- Optional resting-energy estimates from age, height, and weight; these are not daily intake prescriptions.
+- Email/password accounts with personal intake, workout, saved-plan, and optional body-measurement records.
+- Account-owned storage, concurrent-save protection, and JSON export.
+
+### Gym operations
+
+- Local owner setup and staff sign-in.
+- Member records, memberships, and renewal reminders.
+- NPR billing balances, partial payment records, and receipts.
+- Staff-assisted attendance, duplicate check-in prevention, and dashboard reports.
+
+**Scope matters:** the content and movement catalogs are growing, not exhaustive. Clinical contexts and restrictive diets require professional review. Google/Microsoft sign-in and AI need credentials; ChatGPT sign-in requires approved partner access. Staff storage remains local and is disabled on Vercel until migrated. [See implemented, configurable, and planned features →](docs/features.md)
+
+## Quick start
+
+Requires **Node.js 22.17+** and npm.
 
 ```sh
-cd platform
+git clone https://github.com/sudip-parajuli/gym-engine.git
+cd gym-engine/platform
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. No account is required for guides, exercise references, research, or one-time planning. Create an individual account at `/account` to save personal plans, intake, workouts, and progress. Gym staff use `/manage` and `/login`; the first local staff visit offers owner setup.
+Open **http://127.0.0.1:3000**. Browse anonymously, visit `/account` for personal records, or `/login` for local gym-owner setup. No external service is required for the basic local experience.
 
-## What is included
-
-- Public food references, eight evidence guides, and 24 movement references with muscle/equipment/position filters.
-- Editable meal and exercise drafts, listed ingredient exclusions, functional preferences, and optional resting-energy estimates.
-- Individual email/password accounts and private server-side journals with revision-conflict checks.
-- Source-linked research retrieval, with optional opt-in AI explanations prepared for configuration.
-- Local gym members, memberships, NPR billing/payment records, receipts, attendance, and reports.
-- Public metadata, canonicals, Article/Breadcrumb structured data, sitemap, and private-page noindex rules.
-
-The catalogs are a starting point, not exhaustive. Recommendations are educational templates; medical contexts and restrictive diets need professional assessment. Gym Engine does not claim to replace a licensed clinician or dietitian.
+For optional integrations, copy `platform/.env.example` to `platform/.env.local` and follow the [setup guide](docs/getting-started.md). Never commit real credentials or application data.
 
 ## Documentation
 
-| Document | Purpose |
-| --- | --- |
-| [Application guide](platform/README.md) | Local development, implemented operations, validation, and limitations |
-| [Deployment and integrations](DEPLOYMENT-AND-INTEGRATIONS.md) | Vercel root settings, PostgreSQL migrations, email, OAuth, optional AI, and search indexing |
-| [Public and personal experience](PUBLIC-AND-PERSONAL.md) | Anonymous access, account ownership, storage, and planning boundaries |
-| [Product direction](PRODUCT-DIRECTION.md) | Audiences, product vision, and staged delivery |
-| [Consolidation record](CONSOLIDATION.md) | Canonical repository, preserved source history, and retirement status |
+| Guide                                                                        | What you will find                                                     |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [Documentation index](docs/README.md)                                        | Choose the right guide for your role                                   |
+| [Features and access](docs/features.md)                                      | Product capabilities, user journeys, routes, and implementation status |
+| [Getting started](docs/getting-started.md)                                   | Installation, configuration, validation, and troubleshooting           |
+| [Architecture](docs/architecture.md)                                         | Modules, authentication, storage, APIs, and data boundaries            |
+| [Deployment and integrations](docs/deployment.md)                            | PostgreSQL, Vercel, email, OAuth, AI, and indexing                     |
+| [Privacy and recommendation boundaries](docs/privacy-and-recommendations.md) | Records, AI consent, evidence, and planning limits                     |
+| [Roadmap](docs/roadmap.md)                                                   | Production hardening and future product work                           |
+| [Contributing](CONTRIBUTING.md)                                              | Development workflow and pull-request expectations                     |
+| [Security](SECURITY.md)                                                      | Reporting vulnerabilities responsibly                                  |
 
-## Validation
+## Technology
 
-Run inside `platform/`:
+Next.js App Router · React · TypeScript · Better Auth · PostgreSQL for hosted personal accounts · SQLite for local development · Lucide icons. The current implementation uses deterministic planning templates and source retrieval; it does not include a trained ML recommendation model.
+
+## Repository structure
+
+```text
+platform/                 Current Next.js application
+  app/                    Public pages, personal tools, staff workspace, APIs
+  lib/                    Domain logic, authentication, storage, evidence catalog
+  scripts/                Personal database migrations
+  tests/                  Domain, planning, and knowledge checks
+docs/                     Product and engineering documentation
+.github/                  CI and contribution templates
+```
+
+## Development checks
+
+Run from `platform/`:
 
 ```sh
 npm test
@@ -47,16 +98,6 @@ npx tsc --noEmit
 npm run build
 ```
 
-GitHub Actions runs tests and a production build for changes to the current application.
+## License
 
-## Configuration and launch status
-
-Copy `platform/.env.example` to `platform/.env.local` and follow the integration guide. Never commit secrets or the ignored `platform/data/` directory.
-
-Development personal storage uses SQLite; production personal accounts require durable PostgreSQL, explicit migrations, verified email delivery, and an auth secret. Google/Microsoft sign-in and optional AI stay unavailable until configured. ChatGPT sign-in additionally requires approved partner access.
-
-Gym staff storage is still local SQLite and is disabled on Vercel until migrated. Existing Vercel failures are deployment checks, not failed Git pushes; select `platform` as the deployment Root Directory and inspect authenticated build logs. This is a development milestone, not a production launch. Search indexing is disabled by default until production/editorial review.
-
-## Legacy history
-
-The original `gymsite` history remains in this repository. The college PHP application's complete Git history is preserved on [`archive/college-project`](https://github.com/sudip-parajuli/gym-engine/tree/archive/college-project), with verified offline backups. No separate college repository is needed for ongoing development. See the consolidation record for the actual removal status.
+A project license has not been selected yet. Public source availability does not by itself grant an open-source license.

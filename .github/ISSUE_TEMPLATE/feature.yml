@@ -1,0 +1,20 @@
+name: Feature request
+description: Propose an improvement for visitors, individuals, or gym operators.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: User need
+      description: Who needs this, and what are they trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and success criteria
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Evidence, privacy, or implementation considerations
