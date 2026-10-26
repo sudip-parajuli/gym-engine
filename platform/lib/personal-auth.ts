@@ -69,6 +69,7 @@ function buildAuth() {
       minPasswordLength: 8,
       maxPasswordLength: 128,
       requireEmailVerification: production,
+      revokeSessionsOnPasswordReset: true,
       disableSignUp:
         production && !(process.env.RESEND_API_KEY && process.env.MAIL_FROM),
       sendResetPassword: async ({ user, url }) =>

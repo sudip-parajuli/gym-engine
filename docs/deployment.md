@@ -12,6 +12,8 @@ Set `NEXT_PUBLIC_SITE_URL` and `BETTER_AUTH_URL` to the canonical production HTT
 
 **Gym staff persistence is still the earlier local SQLite implementation.** The personal-account PostgreSQL adapter does not migrate gym operations. Keep staff operations local until their separate database migration is completed; do not treat this release as production-ready gym management.
 
+For the exact free-tier provider setup and callbacks, see [authentication setup](authentication-setup.md).
+
 ## Personal accounts
 
 Better Auth implements personal email/password registration, sessions, sign-out, email verification and reset endpoints. Local development can create an account with email/password only; display name is derived from the email prefix. Production email/password signup requires configured email delivery and verified email. Existing staff credentials are separate and never confer personal-account access.

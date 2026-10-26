@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { personalClient } from "@/lib/personal-client";
 import "../fitness.css";
@@ -16,6 +16,15 @@ export default function AccountForm({
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
   const { data: session } = personalClient.useSession();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("error"))
+      setMessage(
+        "That verification link could not be used. Request a new verification email below.",
+      );
+    else if (params.get("verified") === "true")
+      setMessage("Email verified. You can sign in now.");
+  }, []);
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setBusy(true);
@@ -24,6 +33,18 @@ export default function AccountForm({
       email = String(f.get("email")).trim(),
       password = String(f.get("password"));
     try {
+      if (mode === "verify") {
+        const r = await personalClient.sendVerificationEmail({
+          email,
+          callbackURL: "/account?verified=true",
+        });
+        setMessage(
+          r.error
+            ? r.error.message || "Could not request a verification email."
+            : "If this account needs verification, a new link will be sent. Check your inbox and spam folder.",
+        );
+        return;
+      }
       if (mode === "reset") {
         const r = await personalClient.requestPasswordReset({
           email,
@@ -42,6 +63,7 @@ export default function AccountForm({
               email,
               password,
               name: email.split("@")[0].slice(0, 50),
+              callbackURL: "/account?verified=true",
             })
           : await personalClient.signIn.email({ email, password });
       if (r.error) setMessage(r.error.message || "Could not sign in.");
@@ -82,7 +104,7 @@ export default function AccountForm({
             ? "Your fitness account"
             : mode === "signup"
               ? "Start your next chapter."
-              : mode === "reset"
+              : mode === "reset" || mode === "verify"
                 ? "Find your way back."
                 : "Welcome back."}
         </h1>
@@ -119,7 +141,7 @@ export default function AccountForm({
                     autoComplete="email"
                   />
                 </label>
-                {mode !== "reset" && (
+                {mode !== "reset" && mode !== "verify" && (
                   <label>
                     Password
                     <input
@@ -144,7 +166,9 @@ export default function AccountForm({
                       ? "Create account"
                       : mode === "reset"
                         ? "Send reset link"
-                        : "Sign in"}
+                        : mode === "verify"
+                          ? "Send verification email"
+                          : "Sign in"}
                 </button>
               </form>
             }
@@ -158,6 +182,11 @@ export default function AccountForm({
                   : "New here? Create an account"}
               </button>
               <button onClick={() => setMode("reset")}>Forgot password?</button>
+              {registrationAvailable && (
+                <button onClick={() => setMode("verify")}>
+                  Resend verification email
+                </button>
+              )}
             </div>
             {!registrationAvailable && (
               <p className="public-small" role="status">
