@@ -2,6 +2,14 @@
 
 Gym Engine keeps its existing Better Auth identity and Neon account database. Email delivery and social OAuth are separate integrations. Do not turn off verification to bypass missing provider configuration.
 
+## Production configuration — 26 October 2026
+
+- Google project `sincere-baton-512805-m4` has one Web OAuth client, `Gym Engine Web`, with the production origin and callback below. Its external audience is published in production. Only basic identity scopes are requested by the application.
+- Resend verified `auth.techwiredsolutions.com.np` using a DKIM TXT record and two DNS-only CNAME records. The sender is `Gym Engine <accounts@auth.techwiredsolutions.com.np>`; the API key has sending-only access restricted to that domain. Existing root website/mail DNS records were not changed.
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `RESEND_API_KEY` are stored as production secret variables in Vercel. `MAIL_FROM` is production configuration. No provider secrets belong in this repository or local setup documents.
+- The public privacy notice is `/privacy`. Microsoft and ChatGPT remain disabled until their separate provider setup is completed.
+- A real user must still complete an inbox verification and Google consent round trip to confirm delivery and sign-in end to end. Configuration and deployment readiness alone do not prove inbox delivery.
+
 ## Verification and password recovery: Resend
 
 The Resend Free plan is suitable for initial authentication traffic. Its published allowance is 3,000 emails/month with a 100/day limit; verify the current plan in the provider dashboard and leave paid overages disabled.

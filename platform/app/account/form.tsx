@@ -228,6 +228,7 @@ export default function AccountForm({
         <Link href="/planner" className="public-small">
           Just need a one-time plan? Continue without an account →
         </Link>
+        <p className="public-small"><Link href="/privacy">Privacy and your data</Link></p>
       </section>
     </main>
   );
