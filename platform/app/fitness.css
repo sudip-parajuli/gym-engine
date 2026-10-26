@@ -1703,6 +1703,16 @@
   min-height: 100vh;
   padding: 48px 24px;
 }
+.movement-visual, .diet-visual { margin: 0 0 22px; background: #edf2e7; border-radius: 14px; overflow: hidden; }
+.movement-visual > svg { display: block; width: 100%; height: 185px; padding: 12px; }
+.movement-visual figcaption, .diet-visual figcaption { padding: 10px 12px; color: #53624e; font-size: 11px; line-height: 1.5; text-align: center; background: #e4ebdc; }
+.diet-visual > div { display: flex; align-items: center; padding: 15px 5px; }
+.diet-visual > div > div { min-width: 0; flex: 1; text-align: center; }
+.diet-visual span { display: block; font-size: 11px; color: #3e563e; }
+.food-illustration { display: block; width: 100%; max-height: 170px; }
+.knowledge-article > .movement-visual > svg { height: 280px; }
+.knowledge-article > .diet-visual .food-illustration { max-height: 200px; }
+.food-art > .food-illustration { width: 100%; height: 160px; }
 .account-card {
   max-width: 540px;
   margin: 36px auto;
@@ -1746,6 +1756,23 @@
   font-size: 11px;
   font-weight: 400;
 }
+.password-field { display: grid; gap: 9px; }
+.password-input { position: relative; }
+.account-card .password-input input { padding-right: 76px; }
+.password-input button {
+  position: absolute; right: 6px; top: 6px; bottom: 6px;
+  padding: 0 12px; border: 0; border-radius: 5px;
+  background: #edf2ea; color: #25352b; font: inherit; cursor: pointer;
+}
+.password-input button:focus-visible { outline: 2px solid #42644a; outline-offset: 2px; }
+.account-notice {
+  width: min(440px, calc(100vw - 32px)); max-height: calc(100dvh - 48px);
+  margin: auto; padding: 28px; border: 1px solid #ccd4c8; border-radius: 16px;
+  background: #fffdf8; color: #25352b; box-shadow: 0 24px 80px #0003;
+}
+.account-notice::backdrop { background: #14231ccc; }
+.account-notice h2 { margin: 0 0 14px; font: 500 28px/1.2 Georgia, serif; }
+.account-notice p { margin: 0 0 24px; line-height: 1.65; }
 .account-switch {
   display: flex;
   gap: 15px;

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { personalClient } from "@/lib/personal-client";
+import { AccountNotice, PasswordField } from "./controls";
 import "../fitness.css";
 export default function AccountForm({
   providers,
@@ -53,7 +54,7 @@ export default function AccountForm({
         setMessage(
           r.error
             ? r.error.message || "Could not send reset link."
-            : "If this account exists, a reset link will be sent when email delivery is configured.",
+            : "If this account exists, a reset link will be sent. Check your inbox and spam folder.",
         );
         return;
       }
@@ -66,10 +67,14 @@ export default function AccountForm({
               callbackURL: "/account?verified=true",
             })
           : await personalClient.signIn.email({ email, password });
-      if (r.error) setMessage(r.error.message || "Could not sign in.");
+      if (r.error) setMessage(
+        mode === "signin" && r.error.code === "INVALID_EMAIL_OR_PASSWORD"
+          ? "We couldn’t sign you in. Check your email and password. If you haven’t registered yet, choose Create an account. If you used Google to register, continue with Google."
+          : r.error.message || "Could not sign in.",
+      );
       else if (mode === "signup" && production)
         setMessage(
-          "Check your email to verify your account before signing in.",
+          "Check your email to verify your account before signing in. Open the verification link, then return here to sign in. Check your spam folder if you don’t see the email.",
         );
       else window.location.assign("/my-space");
     } catch {
@@ -142,22 +147,7 @@ export default function AccountForm({
                   />
                 </label>
                 {mode !== "reset" && mode !== "verify" && (
-                  <label>
-                    Password
-                    <input
-                      name="password"
-                      type="password"
-                      minLength={8}
-                      maxLength={128}
-                      required
-                      autoComplete={
-                        mode === "signup" ? "new-password" : "current-password"
-                      }
-                    />
-                    <small>
-                      At least 8 characters. A password manager can help.
-                    </small>
-                  </label>
+                  <PasswordField key={mode} fresh={mode === "signup"} />
                 )}
                 <button disabled={busy} className="fitness-primary wide">
                   {busy
@@ -220,11 +210,7 @@ export default function AccountForm({
             </p>
           </>
         )}
-        {message && (
-          <p className="fitness-message" role="status">
-            {message}
-          </p>
-        )}
+        <AccountNotice message={message} onDismiss={() => setMessage("")} />
         <Link href="/planner" className="public-small">
           Just need a one-time plan? Continue without an account →
         </Link>

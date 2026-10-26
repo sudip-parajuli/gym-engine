@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GUIDES, sourceById } from "@/lib/knowledge";
+import { DietVisual } from "../../fitness-visuals";
 import { siteURL, jsonLd } from "@/lib/seo";
 import "../../fitness.css";
 export function generateStaticParams() {
@@ -45,6 +46,7 @@ export default async function Guide({
         </nav>
         <p className="fitness-kicker">{g.category}</p>
         <h1>{g.title}</h1>
+        <DietVisual slug={g.slug} />
         <p className="article-summary">{g.summary}</p>
         <p className="article-byline">
           Gym Engine editorial · Published 25 October 2026

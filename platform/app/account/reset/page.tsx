@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { personalClient } from "@/lib/personal-client";
+import { AccountNotice, PasswordField } from "../controls";
 import "../../fitness.css";
 export default function Reset() {
   const [message, setMessage] = useState(""),
@@ -35,22 +36,12 @@ export default function Reset() {
             }
           }}
         >
-          <label>
-            New password
-            <input
-              name="password"
-              type="password"
-              minLength={8}
-              maxLength={128}
-              required
-              autoComplete="new-password"
-            />
-          </label>
+          <PasswordField fresh />
           <button className="fitness-primary" disabled={busy}>
             {busy ? "Updating…" : "Update password"}
           </button>
         </form>
-        <p role="status">{message}</p>
+        <AccountNotice message={message} onDismiss={() => setMessage("")} />
         <Link href="/account">Back to sign in →</Link>
       </section>
     </main>

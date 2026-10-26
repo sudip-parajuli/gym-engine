@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MOVEMENTS } from "@/lib/exercise-catalog";
+import { MovementVisual } from "../../fitness-visuals";
 import { jsonLd, siteURL } from "@/lib/seo";
 import "../../fitness.css";
 export function generateStaticParams() {
@@ -40,6 +41,7 @@ export default async function Movement({
           {m.muscles.join(" · ")} · {m.position} · {m.equipment}
         </p>
         <h1>{m.name}</h1>
+        <MovementVisual slug={m.slug} name={m.name} />
         <p className="article-byline">
           Gym Engine editorial · General movement reference · Individual form
           review not provided.

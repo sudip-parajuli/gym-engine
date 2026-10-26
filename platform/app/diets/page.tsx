@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GUIDES } from "@/lib/knowledge";
+import { DietVisual } from "../fitness-visuals";
 import "../fitness.css";
 export const metadata = {
   title: "Diet styles, accessible fitness & evidence guides",
@@ -30,6 +31,7 @@ export default function Diets() {
         <div className="learn-grid">
           {GUIDES.map((g) => (
             <article className="learn-card" key={g.slug}>
+              <DietVisual slug={g.slug} />
               <span className="fitness-kicker">{g.category}</span>
               <h2>{g.title}</h2>
               <p>{g.summary}</p>

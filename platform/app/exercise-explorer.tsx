@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { filterMovements, MUSCLE_GROUPS } from "@/lib/exercise-catalog";
+import { MovementVisual } from "./fitness-visuals";
 export default function Explorer() {
   const [query, setQuery] = useState(""),
     [group, setGroup] = useState("All"),
@@ -65,6 +66,7 @@ export default function Explorer() {
       <div className="exercise-grid">
         {matches.map((m, i) => (
           <article className="exercise-card" key={m.slug}>
+            <MovementVisual slug={m.slug} name={m.name} />
             <div className="exercise-number">
               {String(i + 1).padStart(2, "0")}
             </div>

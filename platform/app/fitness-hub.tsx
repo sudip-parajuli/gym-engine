@@ -19,6 +19,8 @@ import { EXERCISES, FOODS } from "@/lib/fitness";
 import ExerciseExplorer from "./exercise-explorer";
 import PersonalPlanner from "./personal-planner";
 import PersonalJournal from "./personal-journal";
+import { personalClient } from "@/lib/personal-client";
+import { FoodVisual } from "./fitness-visuals";
 import "./fitness.css";
 const links = [
   ["discover", "Discover", "/"],
@@ -37,6 +39,7 @@ export const SOURCES = {
   energy: "https://pubmed.ncbi.nlm.nih.gov/2305711/",
 };
 export default function FitnessHub({ section }: { section: string }) {
+  const { data: session, isPending: sessionPending } = personalClient.useSession();
   const [query, setQuery] = useState(""),
     [filter, setFilter] = useState("All");
   const foods = FOODS.filter(
@@ -92,7 +95,7 @@ export default function FitnessHub({ section }: { section: string }) {
           ))}
         </nav>
         <Link href="/account" className="gym-link">
-          Sign in
+          {session ? "My account" : sessionPending ? "Account" : "Sign in"}
         </Link>
         <Link href="/manage" className="gym-link">
           For gyms
@@ -300,8 +303,7 @@ export default function FitnessHub({ section }: { section: string }) {
                 {foods.map((f, i) => (
                   <article className="food-card" key={f.id}>
                     <div className={"food-art food-art-" + (i % 4)}>
-                      <Leaf size={38} />
-                      <span>{f.name.split(" / ")[0]}</span>
+                      <FoodVisual food={f.id} name={f.name} />
                     </div>
                     <div className="food-card-body">
                       <span className="fitness-kicker">{f.group}</span>

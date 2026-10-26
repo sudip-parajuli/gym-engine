@@ -72,6 +72,8 @@ The prepared provider requires approved OpenAI partner access. A normal ChatGPT 
 - Google/Microsoft return to `/my-space`; cancellation and provider errors leave a usable sign-in page.
 - A second account cannot read the first account's journal.
 - Public guides and one-time drafts remain anonymous.
+- Account responses appear in a dismissible, keyboard-accessible modal, including invalid credentials, verification instructions, reset responses and verification callbacks.
+- Password fields provide an explicit Show/Hide control without submitting the form. The public header shows My account when a session is active.
 - Preview identities, provider callbacks, and credentials stay isolated from production.
 
 ## Official references
