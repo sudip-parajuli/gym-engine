@@ -2,6 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { Pool } from "pg";
+import { attachDatabasePool } from "@vercel/functions";
 let connection: DatabaseSync | Pool;
 export function personalDatabase() {
   if (connection) return connection;
@@ -9,7 +10,10 @@ export function personalDatabase() {
     connection = new Pool({
       connectionString: process.env.DATABASE_URL,
       max: 5,
+      idleTimeoutMillis: 5000,
+      connectionTimeoutMillis: 15000,
     });
+    if (process.env.VERCEL) attachDatabasePool(connection);
     return connection;
   }
   if (process.env.NODE_ENV === "production")
