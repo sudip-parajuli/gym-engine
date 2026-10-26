@@ -8,7 +8,7 @@ Gym Engine keeps its existing Better Auth identity and Neon account database. Em
 - Resend verified `auth.techwiredsolutions.com.np` using a DKIM TXT record and two DNS-only CNAME records. The sender is `Gym Engine <accounts@auth.techwiredsolutions.com.np>`; the API key has sending-only access restricted to that domain. Existing root website/mail DNS records were not changed.
 - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `RESEND_API_KEY` are stored as production secret variables in Vercel. `MAIL_FROM` is production configuration. No provider secrets belong in this repository or local setup documents.
 - The public privacy notice is `/privacy`. Microsoft and ChatGPT remain disabled until their separate provider setup is completed.
-- A real user must still complete an inbox verification and Google consent round trip to confirm delivery and sign-in end to end. Configuration and deployment readiness alone do not prove inbox delivery.
+- The owner confirmed successful Google sign-in and email signup, inbox delivery, verification-link return and subsequent email/password sign-in on 26 October 2026. Recheck both flows after provider or callback changes; configuration readiness alone does not prove delivery.
 
 ## Verification and password recovery: Resend
 
