@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           "/learn",
           "/planner",
           "/assistant",
+          "/privacy",
         ],
         ...GUIDES.map((g) => "/diets/" + g.slug),
         ...MOVEMENTS.map((m) => "/movements/" + m.slug),

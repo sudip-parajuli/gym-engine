@@ -444,6 +444,7 @@ export default function FitnessHub({ section }: { section: string }) {
         </p>
         <div>
           <Link href="/learn">Knowledge for everyone</Link>
+          <Link href="/privacy">Privacy and your data</Link>
           <Link href="/manage">
             Gym staff workspace
             <ArrowUpRight size={13} />
