@@ -6,9 +6,11 @@ import "../fitness.css";
 export default function AccountForm({
   providers,
   production,
+  registrationAvailable,
 }: {
   providers: Record<string, boolean>;
   production: boolean;
+  registrationAvailable: boolean;
 }) {
   const [mode, setMode] = useState("signin"),
     [message, setMessage] = useState(""),
@@ -148,6 +150,7 @@ export default function AccountForm({
             }
             <div className="account-switch">
               <button
+                disabled={!registrationAvailable}
                 onClick={() => setMode(mode === "signup" ? "signin" : "signup")}
               >
                 {mode === "signup"
@@ -156,6 +159,13 @@ export default function AccountForm({
               </button>
               <button onClick={() => setMode("reset")}>Forgot password?</button>
             </div>
+            {!registrationAvailable && (
+              <p className="public-small" role="status">
+                New accounts are not open yet while email verification is being
+                prepared. You can still explore guides and create one-time plans
+                without signing in.
+              </p>
+            )}
             <div className="social-options">
               {["google", "microsoft", "chatgpt"].map((p) => (
                 <button

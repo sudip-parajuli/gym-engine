@@ -1,14 +1,14 @@
 # Deployment and integrations
 
-Public web deployment: **https://gym-engine.vercel.app**. The Vercel project `gym-engine` builds `main` from `platform/` using Node 22. Production deployment was verified on 26 October 2026. Public guides and one-time planning are available; personal-account storage, verified email, social sign-in, and optional AI still require service configuration. Staff operations remain disabled on Vercel pending durable-storage migration. Search indexing remains disabled until editorial/production review.
+Public web deployment: **https://gym-engine.vercel.app**. The Vercel project `gym-engine` builds `main` from `platform/` using Node 22. Production deployment was verified on 26 October 2026. Public guides and one-time planning are available; personal-account storage is connected to Neon PostgreSQL. Verified email, social sign-in, and optional AI still require service configuration. Staff operations remain disabled on Vercel pending durable-storage migration. Search indexing remains disabled until editorial/production review.
 
 ## Vercel setup
 
-Choose the canonical Vercel project and production domain. Set **Root Directory = platform**, framework Next.js, install `npm ci`, and build `npm run build`. `platform/vercel.json` records those commands once that project root is selected. Use Node 22.17 or newer.
+Choose the canonical Vercel project and production domain. Set **Root Directory = platform**, framework Next.js, install `npm ci`, and build `node scripts/vercel-build.mjs`. `platform/vercel.json` records those commands once that project root is selected. Use Node 22.17 or newer.
 
 Do not set output to a static export: accounts, journals, and the helper API need server functions. Connect the Git source to `sudip-parajuli/gym-engine`. Disable redundant deployment integrations so only the intended project builds and owns the production domain.
 
-Set `NEXT_PUBLIC_SITE_URL` and `BETTER_AUTH_URL` to the canonical production HTTPS origin. Set a unique, randomly generated `BETTER_AUTH_SECRET` of at least 32 bytes. Add a durable PostgreSQL `DATABASE_URL`; never deploy local SQLite as durable Vercel storage. Run `npm run db:migrate` against that database from a secure environment before enabling account traffic. Production does not run automatic account migrations.
+Set `NEXT_PUBLIC_SITE_URL` and `BETTER_AUTH_URL` to the canonical production HTTPS origin. Set a unique, randomly generated `BETTER_AUTH_SECRET` of at least 32 bytes. Add a durable PostgreSQL `DATABASE_URL`; never deploy local SQLite as durable Vercel storage. Run `npm run db:migrate` against that database from a secure environment before enabling account traffic. Normal builds do not run account migrations. An operator can explicitly set `RUN_DATABASE_MIGRATIONS=true` for a deployment; `scripts/vercel-build.mjs` uses the direct `DATABASE_URL_UNPOOLED` only in the migration child process. Turn the flag off after the migration succeeds. Runtime traffic uses the pooled `DATABASE_URL`.
 
 **Gym staff persistence is still the earlier local SQLite implementation.** The personal-account PostgreSQL adapter does not migrate gym operations. Keep staff operations local until their separate database migration is completed; do not treat this release as production-ready gym management.
 
@@ -66,3 +66,17 @@ Publish useful, attributable health content with honest evidence limits; obtain 
 - https://developers.openai.com/api/docs/guides/text
 - https://developers.google.com/search/docs/appearance/ai-features
 - https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+
+## Connected Neon storage
+
+Neon organization: `org-dry-field-25690240` (Free). Gym Engine project: `wandering-queen-79594826`, database: `gym_engine`. This is independent of EasyMoto.
+
+- Production branch: `production` (`br-royal-voice-b593u98a`).
+- Preview branch: `preview-storage` (`br-green-fire-b5v95d2q`).
+- Vercel production and preview environments use separate database connections and auth secrets, stored as sensitive variables. No live credentials belong in source or local project files.
+- Preview migration/QA uses `RUN_DATABASE_MIGRATIONS=true` and `RUN_STORAGE_SMOKE_TEST=true`. The smoke test refuses to run outside a preview deployment and leaves fictional records on that isolated branch. Disable both flags after an explicit validation run.
+- The auth/journal schema consists of `ge_user`, `ge_session`, `ge_account`, `ge_verification`, and `personal_journals`. Staff tables have not been migrated.
+
+Database connectivity does not enable production signup by itself. Email/password signup remains closed until verified email delivery is configured; social sign-in needs its own registered provider. Existing verified accounts can authenticate when configured. Do not disable verification merely to bypass missing email setup.
+
+For later schema changes, test on the preview branch, inspect the diff, and explicitly migrate production. Retain the free plan; monitor its usage in Neon rather than assuming unlimited storage or compute.

@@ -36,7 +36,7 @@ These are internal web contracts, not a promised stable mobile API. Staff mutati
 
 ## Persistence
 
-Development uses separate SQLite databases for personal and staff records. Hosted personal storage uses `pg` with PostgreSQL and explicit Better Auth/journal migrations. A journal is currently a versioned JSON payload with an integer revision; conditional updates reject competing writes.
+Development uses separate SQLite databases for personal and staff records. Hosted personal storage uses `pg` with Neon PostgreSQL and explicit Better Auth/journal migrations. Vercel pool lifecycle attachment releases idle connections. Production and preview target separate Neon branches. A journal is currently a versioned JSON payload with an integer revision; conditional updates reject competing writes.
 
 Staff tables cover gyms, staff, sessions, members, memberships, payments, attendance, audit events, and login attempts. Money uses integer paisa. Attendance uniqueness follows a Nepal calendar day. Staff SQLite is disabled on Vercel because ephemeral local files cannot safely persist business data.
 
