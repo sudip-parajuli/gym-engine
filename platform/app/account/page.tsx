@@ -9,6 +9,10 @@ export default function Account() {
     <AccountForm
       providers={configuredProviders()}
       production={process.env.NODE_ENV === "production"}
+      registrationAvailable={
+        process.env.NODE_ENV !== "production" ||
+        !!(process.env.RESEND_API_KEY && process.env.MAIL_FROM)
+      }
     />
   );
 }
