@@ -6,6 +6,8 @@ Gym Engine is a web platform for gym-goers, fitness enthusiasts, independent exe
 
 [![Platform checks](https://github.com/sudip-parajuli/gym-engine/actions/workflows/platform.yml/badge.svg?branch=main)](https://github.com/sudip-parajuli/gym-engine/actions/workflows/platform.yml)
 
+**[Open Gym Engine](https://gym-engine.vercel.app)** · [Deployment dashboard](https://vercel.com/sudip-2000s-projects/gym-engine)
+
 **Status:** active development. The local application works; production services and several advanced workflows still need configuration or implementation. See [feature status](docs/features.md) before evaluating it for live use.
 
 ![Gym Engine public fitness hub](docs/assets/overview.png)

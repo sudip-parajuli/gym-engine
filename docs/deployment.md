@@ -1,6 +1,6 @@
 # Deployment and integrations
 
-Gym Engine is under active development. Use this guide to configure the current application; it is not a claim that production services have been provisioned or tested.
+Public web deployment: **https://gym-engine.vercel.app**. The Vercel project `gym-engine` builds `main` from `platform/` using Node 22. Production deployment was verified on 26 October 2026. Public guides and one-time planning are available; personal-account storage, verified email, social sign-in, and optional AI still require service configuration. Staff operations remain disabled on Vercel pending durable-storage migration. Search indexing remains disabled until editorial/production review.
 
 ## Vercel setup
 
