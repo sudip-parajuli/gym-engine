@@ -12,6 +12,14 @@ Gym Engine is a web platform for gym-goers, fitness enthusiasts, independent exe
 
 ![Gym Engine public fitness hub](docs/assets/overview.png)
 
+## Evaluating the project
+
+Start with the public learning/planning experience, then read the
+[feature-status matrix](docs/features.md) and [architecture](docs/architecture.md).
+The staff workspace has different hosting requirements from personal accounts.
+The current planners use deterministic templates and source retrieval; advanced
+AI and production integrations are described separately in the documentation.
+
 ## Who is it for?
 
 | Audience      | Experience                                                                                                                         |
